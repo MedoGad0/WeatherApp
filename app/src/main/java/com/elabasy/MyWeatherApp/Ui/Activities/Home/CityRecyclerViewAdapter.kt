@@ -1,25 +1,21 @@
 package com.elabasy.MyWeatherApp.Ui.Activities.Home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elabasy.MyWeatherApp.Interface.OnItemRecyclerViewClickListener
 import com.elabasy.MyWeatherApp.Util.DataTesttt
-import com.elabasy.MyWeatherApp.databinding.ItemCountryRecyclerViewBinding
-import com.elabasy.MyWeatherApp.databinding.ItemDailyRecyclerViewBinding
-import androidx.recyclerview.widget.RecyclerView.ViewHolder as ViewHolder1
+import com.elabasy.MyWeatherApp.databinding.ItemCityRecyclerViewBinding
+ import androidx.recyclerview.widget.RecyclerView.ViewHolder as ViewHolder1
 
-@SuppressLint("NotifyDataSetChanged")
-class CountryRecyclerViewAdapter(
-    list: ArrayList<DataTesttt>? = null,
-    var context: Context? = null
-) :
-    RecyclerView.Adapter<CountryRecyclerViewAdapter.ItemViewHolder>() {
+class CityRecyclerViewAdapter(
+    list: ArrayList<DataTesttt>? = null, var context: Context? = null)
+    : RecyclerView.Adapter<CityRecyclerViewAdapter.ItemViewHolder>() {
 
     private var list = ArrayList<DataTesttt>()
     private lateinit var clickListener: OnItemRecyclerViewClickListener
+    private lateinit var itemDeleteListener: OnItemRecyclerViewClickListener
 
 
     init {
@@ -29,24 +25,26 @@ class CountryRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setList(list: ArrayList<DataTesttt>) {
         this.list.addAll(list)
         notifyDataSetChanged()
     }
 
-    // to mack OnClickListener from activity
-    @SuppressLint("NotifyDataSetChanged")
+    // to mack  Click Listener from activity
     fun setOnItemClick(recyclerViewOnItemClick: OnItemRecyclerViewClickListener) {
         clickListener = recyclerViewOnItemClick
         notifyDataSetChanged()
     }
 
+    // to mack Delete from activity
+    fun setOnDeleteItem(recyclerViewOnItemClick: OnItemRecyclerViewClickListener) {
+        itemDeleteListener = recyclerViewOnItemClick
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding: ItemCountryRecyclerViewBinding = ItemCountryRecyclerViewBinding.inflate(
+        val binding: ItemCityRecyclerViewBinding = ItemCityRecyclerViewBinding.inflate(
             LayoutInflater.from(parent.context),
-            parent,
-            false
+            parent, false
         )
         return ItemViewHolder(binding)
     }
@@ -55,36 +53,33 @@ class CountryRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = list[position]
         holder.binding.item.setOnClickListener { clickListener.setOnItemClickListener(position) }
-        holder.binding.delete.setOnClickListener { remove(list[position]) }
+        holder.binding.delete.setOnClickListener {
+            itemDeleteListener.setOnItemClickListener(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    class ItemViewHolder(itemView: ItemCountryRecyclerViewBinding) :
+    class ItemViewHolder(itemView: ItemCityRecyclerViewBinding) :
         ViewHolder1(itemView.root) {
-        val binding: ItemCountryRecyclerViewBinding = itemView
+        val binding: ItemCityRecyclerViewBinding = itemView
 
     }
 
-    private fun add(data: DataTesttt) {
+    fun add(data: DataTesttt) {
         list.add(data)
         notifyItemInserted(list.size - 1)
     }
 
-//    fun addAll(mcList: ArrayList<DataTesttt>) {
-//        for (mc in mcList) {
-//            add(mc)
-//        }
-//    }
 
-    private fun remove(item: DataTesttt) {
+    fun remove(item: DataTesttt) {
         val position = list.indexOf(item)
         if (position > -1) {
             list.removeAt(position)
-            notifyItemRemoved(position)
         }
+        notifyItemRemoved(position)
     }
 
 

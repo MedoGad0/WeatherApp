@@ -25,26 +25,47 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 style="@style/loader"
-                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        <AutoCompleteTextView
+            android:id="@+id/autoTextView"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_search_background"
+            android:completionThreshold="1"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:elevation="10dp"
+            android:hint="@string/select_country"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:popupBackground="@drawable/shape_popup_background"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintStart_toStartOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/country_name"
+            android:id="@+id/city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/ic_location"
+            android:layout_marginTop="15dp"
             android:drawablePadding="10dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Faraskour"
             android:textSize="20sp"
+            app:drawableStartCompat="@drawable/ic_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/autoTextView" />
 
         <TextView
             android:id="@+id/dt_txt"
@@ -53,19 +74,19 @@
             android:layout_marginTop="5dp"
             android:text="sdasdasdaasdasdasdsdasd"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@+id/country_name"
-            app:layout_constraintStart_toStartOf="@+id/country_name"
-            app:layout_constraintTop_toBottomOf="@+id/country_name" />
+            app:layout_constraintEnd_toEndOf="@+id/city_name"
+            app:layout_constraintStart_toStartOf="@+id/city_name"
+            app:layout_constraintTop_toBottomOf="@+id/city_name" />
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/ic_clouds_sun"
             android:drawablePadding="10dp"
             android:text="23 °C"
             android:textSize="40sp"
+            app:drawableStartCompat="@drawable/ic_clouds_sun"
             app:layout_constraintEnd_toEndOf="@+id/dt_txt"
             app:layout_constraintStart_toStartOf="@+id/dt_txt"
             app:layout_constraintTop_toBottomOf="@+id/dt_txt" />
@@ -85,7 +106,8 @@
             android:id="@+id/days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DAILY"
+            android:text="@string/daily"
+            android:textAllCaps="true"
             app:layout_constraintStart_toStartOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@+id/weather_state" />
 
@@ -93,46 +115,57 @@
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="#99D6D5D6"
+            android:layout_marginTop="5dp"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/days" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/days_recyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
             app:layout_constraintStart_toStartOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/city"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/days_recyclerView" />
 
         <TextView
-            android:id="@+id/country"
+            android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="country"
-            app:layout_constraintStart_toStartOf="@+id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@+id/days_recyclerView" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/cities"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toTopOf="@+id/view_country"
+            app:layout_constraintStart_toStartOf="@+id/guidelineRight" />
 
         <View
             android:id="@+id/view_country"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="#99D6D5D6"
+            android:background="@color/view"
+            app:layout_constraintBottom_toTopOf="@+id/country_recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/country_recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintStart_toStartOf="@+id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@+id/view_country" />
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineRight"

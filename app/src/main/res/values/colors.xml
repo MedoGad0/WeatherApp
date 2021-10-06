@@ -16,6 +16,10 @@
     <color name="loader_black">#99424242</color>
 
     <color name="blue">#122259</color>
+    <color name="light_blue">#23377C</color>
+
     <color name="pink">#9561a1</color>
-    <color name="dark_pink">#834F8F</color>
+    <color name="dark_pink">#B37E438B</color>
+
+    <color name="view">#99D6D5D6</color>
 </resources>

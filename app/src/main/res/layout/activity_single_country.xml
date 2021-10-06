@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".Ui.Activities.SingleCountry.SingleCountryActivity">
+    tools:context=".Ui.Activities.SingleCity.SingleCityActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,26 +25,35 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 style="@style/loader"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/country_name"
+        <ImageView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_location"
+            android:layout_marginStart="-10dp"
+            android:padding="10dp"
+            android:paddingEnd="20dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:drawablePadding="10dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Faraskour"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/back"
+            app:drawableStartCompat="@drawable/ic_location" />
 
         <TextView
             android:id="@+id/dt_txt"
@@ -53,22 +62,22 @@
             android:layout_marginTop="10dp"
             android:text="sdasdasdaasdasdasdsdasd"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@+id/country_name"
-            app:layout_constraintStart_toStartOf="@+id/country_name"
-            app:layout_constraintTop_toBottomOf="@+id/country_name" />
+            app:layout_constraintEnd_toEndOf="@+id/city_name"
+            app:layout_constraintStart_toStartOf="@+id/city_name"
+            app:layout_constraintTop_toBottomOf="@+id/city_name" />
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_clouds_sun"
             android:drawablePadding="10dp"
             android:text="23 °C"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="@+id/dt_txt"
             app:layout_constraintStart_toStartOf="@+id/dt_txt"
-            app:layout_constraintTop_toBottomOf="@+id/dt_txt" />
+            app:layout_constraintTop_toBottomOf="@+id/dt_txt"
+            app:drawableStartCompat="@drawable/ic_clouds_sun" />
 
         <TextView
             android:id="@+id/weather_state"
@@ -86,7 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="DAILY"
+            android:text="@string/daily"
+            android:textAllCaps="true"
             app:layout_constraintStart_toStartOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@+id/weather_state" />
 
@@ -95,7 +105,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            android:background="#99D6D5D6"
+            android:background="@color/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/days" />
@@ -109,14 +119,23 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/add_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/days_recyclerView" />
+
+        <TextView
             android:id="@+id/add_btn"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="21dp"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/shape_country_background"
-            android:elevation="15dp"
+            android:elevation="10dp"
+            android:gravity="center"
             android:text="+"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"

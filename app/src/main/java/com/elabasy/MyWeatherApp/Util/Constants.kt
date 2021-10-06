@@ -6,6 +6,6 @@ package com.elabasy.MyWeatherApp.Util
 
 class Constants {
     companion object {
-
+        val cityArray = ArrayList<DataTesttt>()
     }
 }

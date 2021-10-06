@@ -2,7 +2,10 @@ package com.elabasy.MyWeatherApp.Ui.Activities.Home
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.elabasy.MyWeatherApp.Util.DataTesttt
 import com.elabasy.MyWeatherApp.databinding.ItemDailyRecyclerViewBinding
@@ -33,6 +36,7 @@ class DailyRecyclerViewAdapter(list: ArrayList<DataTesttt>? = null, var context:
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = list[position]
+        if (position == 4) { holder.binding.view.visibility = GONE }
     }
 
     override fun getItemCount(): Int {
@@ -49,5 +53,10 @@ class DailyRecyclerViewAdapter(list: ArrayList<DataTesttt>? = null, var context:
         this.list.addAll(list)
         notifyDataSetChanged()
     }
+
+    private fun getItem(position: Int): DataTesttt {
+        return list[position]
+    }
+
 
 }

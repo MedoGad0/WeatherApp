@@ -44,13 +44,13 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            android:drawableStart="@drawable/ic_humidity"
             android:drawablePadding="5dp"
             android:text="20%"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temp_min" />
+            app:layout_constraintTop_toBottomOf="@+id/temp_min"
+            app:drawableStartCompat="@drawable/ic_humidity" />
 
         <ImageView
             android:id="@+id/sun_state"
@@ -82,7 +82,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="#99D6D5D6"
+            android:background="@color/view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
